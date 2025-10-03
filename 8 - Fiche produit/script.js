@@ -1,22 +1,26 @@
-/**
- * let
- * element.getAttribute()
- * element.setAttribute()
- * ++ operator
- * operateur ternaire
- */
-
-// 1. Je recupere toutes les petites vignettes
+const fullImage = document.querySelector("#full");
 const vignettes = document.querySelectorAll(".small");
-// 2. Je recupere la grande photo
-const fullImg = document.getElementById("full");
 
-// 3. Je recupere le bouton AJOUTER
-const btnAdd = document.querySelector(".btn-add");
+console.log(fullImage);
+console.log(vignettes);
 
-// 4. Je recupere la balise vide de message d'ajout du panier
+//onClick sur vignettes
+    // tampon_fullSrc = full.src
+    // full.src = vignetteClicked.src
+    // vignetteClicked.src = tampon_fullSrc
 const panierMsg = document.querySelector(".panier-msg");
-// 5. Je crée une variable qui contient le nombre de produits ajoutées ua panier
-let panier = 0;
+const btnAjouter = document.querySelector(".btn-add");
 
-// ...
+let nbPanier = 0;
+
+vignettes.forEach(function(vignette){
+    vignette.addEventListener("click",function(){
+        const tampon_FullSrc = fullImage.getAttribute("src");
+        fullImage.setAttribute("src",vignette.getAttribute("src"));
+        vignette.setAttribute("src",tampon_FullSrc);
+    });
+})
+btnAjouter.addEventListener("click",function(){
+    nbPanier++;
+    panierMsg.innerText = `Vous avez ${nbPanier} produit${nbPanier>1?"s":""} dans le panier.`;
+});

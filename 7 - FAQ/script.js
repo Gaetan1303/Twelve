@@ -1,20 +1,22 @@
-/**
- * firstChild
- * lastChild
- * childNodes
- * nextSibiling MAIS preferez nextElementSibiling pour eviter de selectionner les passages à la ligne
- * previousSibiling MAIS preferez previousElementSibiling  pour eviter de selectionner les passages à la ligne
- * 
- */
+//recuperer les questions
 
-// 1. Je recupere toutes les questions
-const questions = document.querySelectorAll(".question");
+//ecouters le click sur chaque question
+    //afficher la reponse correspondante avec nextElementSibilings
 
-// 2. Je parcours toutes les questions
+const container = document.querySelector(".container")
+const questions = document.querySelectorAll(".question")
 questions.forEach(function(question){
-    // 3. Lors du click sur la question
     question.addEventListener("click",function(){
-        // 4. Je recupere la reponse correspondante et le chevron correspondante
-        // ..
-    });
+        const btnArrow = question.lastElementChild;
+        question.nextElementSibling.classList.toggle("show-reponse");
+        btnArrow.classList.toggle("fa-chevron-down");
+        btnArrow.classList.toggle("fa-chevron-up");
+    })
+});
+
+fetch("https://pokeapi.co/api/v2/pokemon?limit=160")
+.then(pokemons=>pokemons.json())
+.then(pokemons=>{
+    const balise = `<a href="${pokemons.results[0].url}">${pokemons.results[0].name}</a>`
+    container.innerHTML += balise;
 });

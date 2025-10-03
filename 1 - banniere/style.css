@@ -34,7 +34,7 @@ Banniere cookies
     align-items: center;
     justify-content:space-between;
     opacity: 1;
-    transition:1s;
+    transition: opacity 1s;
 }
 .cookies-texte{
     padding: 1rem;
