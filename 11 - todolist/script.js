@@ -1,20 +1,21 @@
-/**
- * element.parentElement
- * element.remove()
- */
+// Bannière cookies
+const banner = document.getElementById('cookie-banner');
+const btnAccept = document.getElementById('accept-cookies');
 
-// 1. Je recupere le forumlaire de saisi d'un nouvelle tache
-const form = document.querySelector("#form");
-// 2. Je recupere le conteneur des taches
-const listTasks = document.querySelector(".list-tasks");
+// Vérifie si l'utilisateur a déjà accepté les cookies
+if(localStorage.getItem('cookiesAccepted')) {
+    banner.style.display = 'none';
+}
 
-// 3. Lorsque le formulaire est soumis
-form.addEventListener("submit",function(e){
-    
-    // ...
-    
-    
-    // Je reset le contenu du formulaire pour eviter que le texte reste une fois la tache crée (ergonomique)
-    form.reset();
+btnAccept.addEventListener('click', function() {
+    // Animation fade-out
+    banner.classList.add('fadeout');
+    // Après l'animation, on masque la bannière et on enregistre l'acceptation
+    banner.addEventListener('transitionend', function handler() {
+        banner.removeEventListener('transitionend', handler);
+        banner.style.display = 'none';
+        localStorage.setItem('cookiesAccepted', 'true');
+    });
 });
+
 

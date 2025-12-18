@@ -25,9 +25,43 @@ const message = document.getElementById("message");
 
 // 2. Lorsque le formulaire est soumit (clique du bouton submit ou touche ENTER)
 form.addEventListener("submit",function(event){
-    // 3. J'annule le comportement par défaut du formulaire  : qui consiste à envoyer une requete http GET à l'adresse de l'attribut action du formualire et donc recharger la page
     event.preventDefault();
-    // ..
+
+    // Réinitialise tous les messages d'erreur
+    const errors = document.querySelectorAll('.error');
+    errors.forEach(e => e.classList.add('invisible'));
+
+    let hasError = false;
+
+    // Prénom
+    if(prenom.value.trim().length <= 2 || prenom.value.trim().length >= 20) {
+        prenom.nextElementSibling.classList.remove('invisible');
+        hasError = true;
+    }
+
+    // Nom
+    if(nom.value.trim().length <= 2 || nom.value.trim().length >= 20) {
+        nom.nextElementSibling.classList.remove('invisible');
+        hasError = true;
+    }
+
+    // Email
+    if(!isValidEmail(email.value.trim())) {
+        email.nextElementSibling.classList.remove('invisible');
+        hasError = true;
+    }
+
+    // Message
+    if(message.value.trim().length < 10 || message.value.trim().length > 100) {
+        message.nextElementSibling.classList.remove('invisible');
+        hasError = true;
+    }
+
+    // Si aucune erreur, on peut traiter le formulaire (ex: afficher un message de succès ou envoyer les données)
+    if(!hasError) {
+        alert('Formulaire envoyé avec succès !');
+        form.reset();
+    }
 });
 
 /**

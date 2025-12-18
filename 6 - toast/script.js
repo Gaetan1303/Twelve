@@ -23,13 +23,17 @@ btn.addEventListener("click",function(){
     // 7. Je rajoute la div dans le document entant qu'enfant du contrneur de toasts
     ctnToasts.appendChild(toast);
 
-    // 8. Au bout de 3secondes le toast est retiré du document
-    setTimeout(function(){
-        toast.remove();
-    },3000);
-    // 9. Lors du clique sur le toast le toast est retiré du document
-    toast.addEventListener("click",function(){
-        toast.remove();
-    });
+    // Fonction pour lancer le fade-out puis retirer le toast
+    function removeToastWithFade() {
+        toast.classList.add("fadeout");
+        toast.addEventListener("transitionend", function handler() {
+            toast.removeEventListener("transitionend", handler);
+            toast.remove();
+        });
+    }
 
+    // 8. Au bout de 3 secondes le toast est retiré du document avec fade-out
+    setTimeout(removeToastWithFade, 3000);
+    // 9. Lors du clique sur le toast le toast est retiré du document avec fade-out
+    toast.addEventListener("click", removeToastWithFade);
 });

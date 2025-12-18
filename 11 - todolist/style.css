@@ -14,60 +14,46 @@ section{
     display: flex;
     justify-content: center;
 }
-#todo-list{
-    height: min-content;
+.placeholder-content {
+    min-height: 80vh;
+    padding: 2rem;
+    color: white;
+    text-align: center;
 }
-body{
+body {
     font-size: 1.4rem;
     font-family: arial;
-    color:white;
+    color: white;
 }
-#todo-list{
-    width:80%;
-    background-color: rgb(255, 255, 255);
-    padding: 2rem;
-}
-#form{
+.cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #222;
+    color: #fff;
+    padding: 1.5rem 2rem;
     display: flex;
-    gap:0.2rem;
-}
-button{
-    border:none;
-    width:4rem;
-    height:4rem;
-    background-color: rgb(212, 212, 212);
-}
-button:active{
-    scale:0.98;
-}
-#todo{
-    width:100%;
-    border:none;
-    padding:1rem;
-    border-bottom:1px dashed grey;
-}
-.task{
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    background-color: rgb(212, 212, 212);
-    padding-left:1rem;
-    margin:1rem;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    opacity: 1;
+    transition: opacity 0.5s;
 }
-.task p{
-    flex:1;
-    font-size: 2rem;
-    color:rgb(42, 42, 42);
+.cookie-banner button {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
 }
-.task button{
-    margin:1rem;
+.cookie-banner button:hover {
+    background: #388e3c;
 }
-.btn-delete{
-    background-color: rgb(204, 40, 40);
-}
-.btn-archive{
-    background-color: rgb(56, 147, 56);
-}
-.done{
-    text-decoration: line-through;
-    color:black;
+.cookie-banner.fadeout {
+    opacity: 0;
 }

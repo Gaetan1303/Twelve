@@ -49,3 +49,7 @@ button:active{
 .toast:hover{
     opacity: 0.33;
 }
+
+.toast.fadeout {
+    opacity: 0;
+}
