@@ -1,0 +1,12 @@
+
+  services:
+    web:
+      image: nginx:stable-alpine
+      container_name: twelve_web
+      ports:
+        - "8080:80"
+      volumes:
+        - ./:/usr/share/nginx/html:ro
+        - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      restart: unless-stopped
+
